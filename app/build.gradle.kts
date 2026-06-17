@@ -11,8 +11,8 @@ android {
         applicationId = "com.yu.ghostwidget"
         minSdk = 24
         targetSdk = 37
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -41,6 +41,9 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    
+    // Explicitly add Kotlin stdlib if needed, using the version from libs.versions.toml
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.4.0")
     
     // Compose dependencies (kept for potential future use or migration)
     implementation(platform(libs.androidx.compose.bom))

@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">GhostWidget</string>
+    <string name="shortcut_reset_label">One-click Transparent</string>
+
+    <string name="title_settings">GhostWidget Settings</string>
+    <string name="delay_label">Single Tap Delay</string>
+    <string name="keep_screen_label">Keep Screen On when showing image</string>
+    <string name="single_tap_label">Single Tap Image</string>
+    <string name="double_tap_label">Double Tap Image</string>
+    <string name="single_tap_selected">Single Tap Image (Selected)</string>
+    <string name="double_tap_selected">Double Tap Image (Selected)</string>
+
+    <string name="btn_select_image">Select Image</string>
+    <string name="btn_reset">Reset</string>
+    <string name="btn_reset_all">Reset All</string>
+    <string name="btn_instructions">Instructions</string>
+    <string name="btn_github">My GitHub</string>
+
+    <string name="reset_label">One-click Transparent</string>
+    <string name="reset_desc">Hide all images currently displayed on the desktop</string>
+
+    <string name="toast_image_saved">Image saved</string>
+    <string name="toast_image_failed">Failed to load image</string>
+    <string name="toast_image_removed">Image removed</string>
+    <string name="toast_no_image">No image selected</string>
+    <string name="toast_reset_all">Reset all widgets to transparent</string>
+
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_instructions_title">Instructions</string>
+    <string name="dialog_instructions_content">1. Select images for single and double tap.\n2. Go to the home screen, long-press an empty area and select \"Widgets\".\n3. Find \"GhostWidget\" and add it to your home screen.\n4. Click or double-click the Widget to toggle image display.\n5. Note: This widget is completely transparent. The image only shows after a tap/double-tap, and can be hidden again with another tap/double-tap.\n6. This widget also works with Samsung Good Lock plugin \"LockStar\". You can add this widget to your lock screen, perfect for those who want to keep their lock screen clean but need quick access to things like barcodes.</string>
 </resources>

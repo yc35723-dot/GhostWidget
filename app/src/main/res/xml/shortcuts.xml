@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="reset_all"
+        android:enabled="true"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:shortcutShortLabel="@string/shortcut_reset_label"
+        android:shortcutLongLabel="@string/shortcut_reset_label">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.yu.ghostwidget"
+            android:targetClass="com.yu.ghostwidget.ResetShortcutActivity" />
+    </shortcut>
+</shortcuts>

@@ -15,7 +15,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.android.material.slider.Slider
+import android.widget.ImageButton
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import java.io.File
+import java.util.Locale
 import java.io.FileOutputStream
 
 class MainActivity : AppCompatActivity() {
@@ -82,6 +86,10 @@ class MainActivity : AppCompatActivity() {
             resetImage("double_tap_image.png")
         }
 
+        findViewById<Button>(R.id.btn_reset_all).setOnClickListener {
+            resetAllWidgets()
+        }
+
         findViewById<Button>(R.id.btn_instructions).setOnClickListener {
             showInstructionsDialog()
         }
@@ -89,6 +97,10 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btn_github).setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/yc35723-dot"))
             startActivity(intent)
+        }
+
+        findViewById<ImageButton>(R.id.btn_language).setOnClickListener {
+            showLanguageMenu()
         }
 
         updateUI()
@@ -107,12 +119,12 @@ class MainActivity : AppCompatActivity() {
                 FileOutputStream(file).use { out ->
                     originalBitmap.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, out)
                 }
-                Toast.makeText(this, "圖片已儲存", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.toast_image_saved), Toast.LENGTH_SHORT).show()
                 updateUI()
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            Toast.makeText(this, "圖片載入失敗", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.toast_image_failed), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -120,47 +132,60 @@ class MainActivity : AppCompatActivity() {
         val file = File(filesDir, fileName)
         if (file.exists()) {
             file.delete()
-            Toast.makeText(this, "圖片已移除", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.toast_image_removed), Toast.LENGTH_SHORT).show()
             updateUI()
         } else {
-            Toast.makeText(this, "目前未選擇圖片", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.toast_no_image), Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun resetAllWidgets() {
+        val intent = Intent(this, GhostWidgetProvider::class.java).apply {
+            action = GhostWidgetProvider.ACTION_RESET_ALL
+        }
+        sendBroadcast(intent)
     }
 
     private fun updateUI() {
         val singleFile = File(filesDir, "single_tap_image.png")
         if (singleFile.exists()) {
-            singleLabel.text = "單擊圖片 (已選擇)"
+            singleLabel.text = getString(R.string.single_tap_selected)
             singlePreview.visibility = View.VISIBLE
             singlePreview.setImageBitmap(BitmapFactory.decodeFile(singleFile.absolutePath))
         } else {
-            singleLabel.text = "單擊圖片"
+            singleLabel.text = getString(R.string.single_tap_label)
             singlePreview.visibility = View.GONE
         }
 
         val doubleFile = File(filesDir, "double_tap_image.png")
         if (doubleFile.exists()) {
-            doubleLabel.text = "雙擊圖片 (已選擇)"
+            doubleLabel.text = getString(R.string.double_tap_selected)
             doublePreview.visibility = View.VISIBLE
             doublePreview.setImageBitmap(BitmapFactory.decodeFile(doubleFile.absolutePath))
         } else {
-            doubleLabel.text = "雙擊圖片"
+            doubleLabel.text = getString(R.string.double_tap_label)
             doublePreview.visibility = View.GONE
         }
     }
 
     private fun showInstructionsDialog() {
-        val instructions = "1. 選擇單擊與雙擊時顯示的圖片。\n" +
-                "2. 回到桌面，長按空白處選擇「小工具」。\n" +
-                "3. 找到「GhostWidget」並加入桌面。\n" +
-                "4. 點擊或雙擊 Widget 即可切換圖片顯示。\n" +
-                "5. 注意，本 app 之 widget 為完全透明，雙擊或單擊後才會顯示圖片，再次雙擊或單擊即可關閉。\n" +
-                "6. 本 app widget 亦適用於三星 Good Lock 插件 LockStar ，可在鎖定螢幕新增此 widget ，適合有強迫症的你，可以拿來放載具條碼。"
-        
         MaterialAlertDialogBuilder(this)
-            .setTitle("使用說明")
-            .setMessage(instructions)
-            .setPositiveButton("確定", null)
+            .setTitle(getString(R.string.dialog_instructions_title))
+            .setMessage(getString(R.string.dialog_instructions_content))
+            .setPositiveButton(getString(R.string.dialog_ok), null)
+            .show()
+    }
+
+    private fun showLanguageMenu() {
+        val languages = arrayOf("繁體中文", "简体中文", "English")
+        val locales = arrayOf("zh-TW", "zh-CN", "en")
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle(getString(R.string.title_settings))
+            .setItems(languages) { _, which ->
+                val localeList = LocaleListCompat.forLanguageTags(locales[which])
+                AppCompatDelegate.setApplicationLocales(localeList)
+            }
             .show()
     }
 }

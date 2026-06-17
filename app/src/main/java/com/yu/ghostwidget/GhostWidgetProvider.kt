@@ -7,6 +7,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
+import android.widget.Toast
 
 class GhostWidgetProvider : AppWidgetProvider() {
 
@@ -22,11 +23,37 @@ class GhostWidgetProvider : AppWidgetProvider() {
             val appWidgetManager = AppWidgetManager.getInstance(context)
             val appWidgetIds = appWidgetManager.getAppWidgetIds(ComponentName(context, GhostWidgetProvider::class.java))
             onUpdate(context, appWidgetManager, appWidgetIds)
+        } else if (intent.action == ACTION_RESET_ALL) {
+            resetAllWidgets(context)
         }
+    }
+
+    private fun resetAllWidgets(context: Context) {
+        val appWidgetManager = AppWidgetManager.getInstance(context)
+        val appWidgetIds = appWidgetManager.getAppWidgetIds(ComponentName(context, GhostWidgetProvider::class.java))
+        val prefs = context.getSharedPreferences("GhostWidgetPrefs", Context.MODE_PRIVATE)
+        val editor = prefs.edit()
+
+        for (appWidgetId in appWidgetIds) {
+            editor.putBoolean("single_tap_visible_$appWidgetId", false)
+            editor.putBoolean("double_tap_visible_$appWidgetId", false)
+            
+            val views = RemoteViews(context.packageName, R.layout.ghost_widget)
+            views.setViewVisibility(R.id.widget_image, android.view.View.GONE)
+            appWidgetManager.updateAppWidget(appWidgetId, views)
+        }
+        editor.apply()
+
+        // Stop service when all hidden
+        val serviceIntent = Intent(context, KeepScreenOnService::class.java)
+        context.stopService(serviceIntent)
+
+        Toast.makeText(context, context.getString(R.string.toast_reset_all), Toast.LENGTH_SHORT).show()
     }
 
     companion object {
         const val ACTION_WIDGET_CLICK = "com.yu.ghostwidget.WIDGET_CLICK"
+        const val ACTION_RESET_ALL = "com.yu.ghostwidget.RESET_ALL"
 
         fun updateAppWidget(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int) {
             val views = RemoteViews(context.packageName, R.layout.ghost_widget)

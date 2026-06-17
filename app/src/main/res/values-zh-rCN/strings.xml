@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">GhostWidget</string>
+    <string name="shortcut_reset_label">一键透明</string>
+
+    <string name="title_settings">GhostWidget 设置</string>
+    <string name="delay_label">单击反应延迟</string>
+    <string name="keep_screen_label">显示照片时保持屏幕常亮</string>
+    <string name="single_tap_label">单击图片</string>
+    <string name="double_tap_label">双击图片</string>
+    <string name="single_tap_selected">单击图片 (已选择)</string>
+    <string name="double_tap_selected">双击图片 (已选择)</string>
+
+    <string name="btn_select_image">选择图片</string>
+    <string name="btn_reset">重置</string>
+    <string name="btn_reset_all">重置</string>
+    <string name="btn_instructions">使用说明</string>
+    <string name="btn_github">My GitHub</string>
+
+    <string name="reset_label">一键透明</string>
+    <string name="reset_desc">隐藏所有桌面上显示中的图片</string>
+
+    <string name="toast_image_saved">图片已保存</string>
+    <string name="toast_image_failed">图片加载失败</string>
+    <string name="toast_image_removed">图片已移除</string>
+    <string name="toast_no_image">目前未选择图片</string>
+    <string name="toast_reset_all">已重置所有小组件为透明</string>
+
+    <string name="dialog_ok">确定</string>
+    <string name="dialog_instructions_title">使用说明</string>
+    <string name="dialog_instructions_content">1. 选择单击与双击时显示的图片。\n2. 回到桌面，长按空白处选择“小组件”。\n3. 找到“GhostWidget”并加入桌面。\n4. 点击或双击 Widget 即可切换图片显示。\n5. 注意，本 app 之 widget 为完全透明，双击或单击后才会显示图片，再次双击或单击即可关闭。\n6. 本 app widget 亦适用于三星 Good Lock 插件 LockStar ，可在锁定屏幕新增此 widget ，适合有强迫症的你，可以拿來放载具条码。</string>
+</resources>

@@ -5,8 +5,12 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Handler
 import android.os.Looper
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.os.VibratorManager
 import android.view.View
 import android.widget.RemoteViews
 import java.io.File
@@ -38,17 +42,45 @@ class WidgetClickReceiver : BroadcastReceiver() {
             if (currentTime - lastTime < userDelay) {
                 // Double tap detected
                 prefs.edit().putLong("last_click_time_$appWidgetId", 0).apply()
+                vibrate(context, doubleTap = true)
                 handleDoubleTap(context, appWidgetId)
             } else {
                 // Potential single tap
                 prefs.edit().putLong("last_click_time_$appWidgetId", currentTime).apply()
                 
                 val runnable = Runnable {
+                    vibrate(context, doubleTap = false)
                     handleSingleTap(context, appWidgetId)
                     pendingActions.remove(appWidgetId)
                 }
                 pendingActions[appWidgetId] = runnable
                 handler.postDelayed(runnable, userDelay)
+            }
+        }
+    }
+
+    private fun vibrate(context: Context, doubleTap: Boolean) {
+        val vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val vibratorManager = context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+            vibratorManager.defaultVibrator
+        } else {
+            @Suppress("DEPRECATION")
+            context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        }
+
+        if (doubleTap) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vibrator.vibrate(VibrationEffect.createWaveform(longArrayOf(0, 30, 40, 30), -1))
+            } else {
+                @Suppress("DEPRECATION")
+                vibrator.vibrate(longArrayOf(0, 30, 40, 30), -1)
+            }
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE))
+            } else {
+                @Suppress("DEPRECATION")
+                vibrator.vibrate(50)
             }
         }
     }

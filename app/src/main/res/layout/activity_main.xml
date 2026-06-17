@@ -14,14 +14,26 @@
 
         <TextView
             android:id="@+id/title_text"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="GhostWidget 設定"
+            android:text="@string/title_settings"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_language" />
+
+        <ImageButton
+            android:id="@+id/btn_language"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_language"
+            android:contentDescription="@string/title_settings"
+            app:layout_constraintTop_toTopOf="@id/title_text"
+            app:layout_constraintBottom_toBottomOf="@id/title_text"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/settings_card"
@@ -42,7 +54,7 @@
                     android:id="@+id/delay_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="單擊反應延遲"
+                    android:text="@string/delay_label"
                     android:textSize="18sp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -80,7 +92,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="顯示照片時保持螢幕常亮"
+                    android:text="@string/keep_screen_label"
                     android:textSize="18sp"
                     app:layout_constraintTop_toBottomOf="@id/divider"
                     app:layout_constraintStart_toStartOf="parent"
@@ -116,7 +128,7 @@
                     android:id="@+id/single_tap_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="單擊圖片"
+                    android:text="@string/single_tap_label"
                     android:textSize="18sp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -138,7 +150,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="8dp"
-                    android:text="選擇圖片"
+                    android:text="@string/btn_select_image"
                     app:layout_constraintTop_toBottomOf="@id/single_tap_preview"
                     app:layout_constraintEnd_toStartOf="@id/btn_reset_single"
                     app:layout_constraintBottom_toBottomOf="parent" />
@@ -148,7 +160,7 @@
                     style="@style/Widget.Material3.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="重設"
+                    android:text="@string/btn_reset"
                     android:textColor="?attr/colorError"
                     app:layout_constraintTop_toTopOf="@id/btn_select_single"
                     app:layout_constraintBottom_toBottomOf="@id/btn_select_single"
@@ -176,7 +188,7 @@
                     android:id="@+id/double_tap_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="雙擊圖片"
+                    android:text="@string/double_tap_label"
                     android:textSize="18sp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -198,7 +210,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="8dp"
-                    android:text="選擇圖片"
+                    android:text="@string/btn_select_image"
                     app:layout_constraintTop_toBottomOf="@id/double_tap_preview"
                     app:layout_constraintEnd_toStartOf="@id/btn_reset_double"
                     app:layout_constraintBottom_toBottomOf="parent" />
@@ -208,10 +220,59 @@
                     style="@style/Widget.Material3.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="重設"
+                    android:text="@string/btn_reset"
                     android:textColor="?attr/colorError"
                     app:layout_constraintTop_toTopOf="@id/btn_select_double"
                     app:layout_constraintBottom_toBottomOf="@id/btn_select_double"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/reset_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintTop_toBottomOf="@id/double_tap_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/reset_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reset_label"
+                    android:textSize="18sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btn_reset_all" />
+
+                <TextView
+                    android:id="@+id/reset_desc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reset_desc"
+                    android:textSize="14sp"
+                    android:alpha="0.7"
+                    app:layout_constraintTop_toBottomOf="@id/reset_label"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btn_reset_all" />
+
+                <Button
+                    android:id="@+id/btn_reset_all"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_reset_all"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -224,7 +285,7 @@
             android:layout_marginBottom="32dp"
             android:orientation="horizontal"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/double_tap_card"
+            app:layout_constraintTop_toBottomOf="@id/reset_card"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -235,14 +296,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="使用說明" />
+                android:text="@string/btn_instructions" />
 
             <Button
                 android:id="@+id/btn_github"
                 style="@style/Widget.Material3.Button.TonalButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="My GitHub"
+                android:text="@string/btn_github"
                 app:icon="@drawable/github_icon" />
 
         </LinearLayout>
