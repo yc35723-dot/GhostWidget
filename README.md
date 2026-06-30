@@ -6,7 +6,7 @@
 [简体中文](README_zh-CN.md) 
 
 🔗 Download link 
-https://github.com/yc35723-dot/GhostWidget/releases/download/GhostWidget-v1.1/GhostWidget-v1.1-release.apk
+https://github.com/yc35723-dot/GhostWidget/releases/download/GhostWidget-v1.2/GhostWidget-v1.2-release.apk
 
 **GhostWidget** is an “invisible” Android home-screen widget designed for people who want to place a vehicle barcode, e-ticket, Instagram profile QR code, or similar content on their home screen or lock screen without blocking their wallpaper. It appears only when needed. By default, it is completely transparent, and only shows your image when you tap once or twice.
 
