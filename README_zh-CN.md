@@ -6,8 +6,7 @@
 [简体中文](README_zh-CN.md) 
 
 🔗 下载链接
-https://github.com/yc35723-dot/GhostWidget/releases/download/GhostWidget-v1.1/GhostWidget-v1.1-release.apk
-
+https://github.com/yc35723-dot/GhostWidget/releases/download/GhostWidget-v1.2/GhostWidget-v1.2-release.apk
 **GhostWidget** 是一款专为 Android 设计的“隐形”桌面小组件。旨在满足那些希望在桌面或锁屏上放置载具条码/电子票券/Instagram 个人主页二维码等内容，但又不想遮挡壁纸的用户需求——仅在需要时现身！默认情况下它完全透明，只有在你单击或双击时才会显示你的图片。
 
 这款工具尤其适合追求桌面简洁，或需要在锁屏界面（配合 Samsung Goodlock LockStar）快速出示条码的用户。
