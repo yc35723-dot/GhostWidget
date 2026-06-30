@@ -6,7 +6,7 @@
 [简体中文](README_zh-CN.md) 
 
 🔗 下載連結 
-https://github.com/yc35723-dot/GhostWidget/releases/download/GhostWidget-v1.1/GhostWidget-v1.1-release.apk
+https://github.com/yc35723-dot/GhostWidget/releases/download/GhostWidget-v1.2/GhostWidget-v1.2-release.apk
 
 **GhostWidget** 是一款專為 Android 設計的「隱形」桌面小工具 。旨在為想要在桌面或鎖定畫面上想放載具條碼/電子票券/IG 的個人檔案 QR-Code ...等等，但又不想擋到桌布的人們設計，只在需要時出現! 它在預設情況完全透明，只有在您單擊或雙擊時才會顯示您的圖片。
 
